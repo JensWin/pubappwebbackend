@@ -49,6 +49,22 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
+    @PostMapping("/createRoles")
+    public String createDefaultRoles() {
+
+        Role role1 = new Role();
+        role1.setName(ERole.ROLE_USER);
+
+        Role role2 = new Role();
+        role2.setName(ERole.ROLE_ADMIN);
+
+        roleRepository.save(role1);
+        roleRepository.save(role2);
+        
+        return "done";
+    }
+    
+
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
